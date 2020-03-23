@@ -63,7 +63,7 @@ nav > .item:hover > .sub-item { background-color: white; visibility: visible; tr
     border-radius: 0 0 15px 15px;
     z-index: 300;
 }
-.sub-item > a { width: 100%; height: 50%;  float: left; }
+.sub-item > a { width: 100%; height: 50%; float: left; }
 
 #logo { height: 50px; }
 
