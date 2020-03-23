@@ -1,0 +1,50 @@
+
+body { background-color: #f8f8f8;}
+.background-img {
+    width: 100%;
+    height: 300px;
+
+
+}
+.background-img > img { width: 100%; height: 500px;}
+
+.page{ height: 1000px;}
+
+.text-header { 
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center; 
+    color: white;
+
+    margin-top: 800px;
+}
+
+.text-header > p > span { font-weight: bold; }
+
+.top-pic { width: 80%; height: 500px; margin: 0 auto; position: relative; border: 20px solid rgb(241, 241, 241);}
+.top-pic > img { 
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.main { margin-top: 50px; padding: 0 150px;}
+.main-pic {width: 30%; float: left;}
+.main-text {width: 100%;}
+.main-text > p > span { font-size: 25px; font-weight: bold; }
+
+.sub {
+    width: 100%;
+    height: 500px;
+    margin-top: 50px;
+    padding: 0 150px;
+}
+
+.sub-text > p > span { font-weight: bold; font-weight: bold;}
+
+footer {
+    margin-top: 200px;
+}

@@ -1,0 +1,14 @@
+
+.main { position: relative; height: 100%;}
+.ab { position: absolute; }
+.ab > p > span {font-weight: bold;}
+.main-1 {left: 0%; top: 10%;}
+.main-2 {left: 0%; top: 90%;}
+.main-3 {left: 60%; top: 60%;}
+.main-4 {left: 60%; top: 150%;}
+.main-5 {left: 0%; top: 180%;}
+
+
+footer {
+    margin-top: 1000px;
+}

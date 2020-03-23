@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부산국제영화제</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/parti.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+</head>
+<body>
+    <header>
+        <div class="top-nav container-fluid">
+            <div class="top-nav-left float-left">
+                <a href="#">BIFF</a>
+                <a href="#">Asian Film Market</a>
+                <a href="#">APM</a>
+                <a href="#">AFA</a>
+                <a href="#">ACF</a>
+                <a href="#">Forum BIFF</a>
+                <a href="#">Community</a>
+                <a href="#">PRESS Service</a>
+            </div>
+            <div class="top-nav-right float-right pr-5">
+                <a href="#">1대1문의</a>
+                <a href="#">회원가입</a>
+                <a href="#">로그인</a>
+            </div>
+            <nav class="w-100 float-left">
+                <a href="./index.html"><img id="logo" class="mt-4 ml-3" src="./images/logo.png"></img></a>
+                <div class="item">
+                    <a href="#">이벤트</a>
+                    <div class="sub-item w-100 mt-2">
+                        <a href="./parti.html">영화티저 콘테스트</a>
+                        <a href="#">콘테스트 참여하기</a>
+                    </div>
+                </div>
+                <div class="item"><a href="#">상영작검색</a></div>
+                <div class="item"><a href="#">상영일정</a></div>
+                <div class="item"><a href="#">출품신청</a></div>
+                <div class="item">
+                    <a href="#">부산국제영화제</a>
+                    <div class="sub-item w-100 mt-2">
+                        <a href="./sub_1.html">개최개요</a>
+                        <a href="#">행사안내</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="slide-left-text">
+        <p class="h-100"><span>Busan</span> International <br>
+            Film Festival</p>
+    </div>
+    <div id="visual">
+        <div class="slide">
+            <div class="slide-background">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="slide-text">
+                <p><span>Busan</span> International <br>
+                    Film Festival</p>
+                <p>2019년 10월 7일, 아시아 최대의 영화 축제 부산국제영화제 개막!</p>
+            </div>
+        </div>
+    </div>
+    <!-- ////////////////// -->
+    <div id="wrap">
+        <div class="edit">
+            <button id="free_curve" data-tool="line">자유곡선</button>
+            <button id="rect" data-tool="rect">사각형</button>
+            <button id="text" data-tool="text">텍스트</button>
+            <button id="select" data-tool="select">선택</button>
+            <button id="play">재생</button>
+            <button id="pause">정지</button>
+            <button id="delete_all">전부삭제</button>
+            <button id="deletion">선택삭제</button>
+            <button id="download">다운로드</button>
+        </div>
+        <div class="screen" id="screen">
+            <p id="screen_text">동영상을 선택해주세요.</p>
+            <div class="video">
+                <video src="./videos/movie1.mp4" id="movie1" class="movie_1"></video>
+                <video src="./videos/movie2.mp4" id="movie2" class="movie_2"></video>
+                <video src="./videos/movie3.mp4" id="movie3" class="movie_3"></video>
+                <video src="./videos/movie4.mp4" id="movie4" class="movie_4"></video>
+                <video src="./videos/movie5.mp4" id="movie5" class="movie_5"></video>
+            </div>
+            <div id="canvas">
+            </div>
+        </div>
+        <div class="opction">
+            <p>색상</p>
+            <select name="opction" id="color">
+                <option value="gray">gray</option>
+                <option value="blue">blue</option>
+                <option value="green">green</option>
+                <option value="red">red</option>
+                <option value="yellow">yellow</option>
+            </select>
+            <p>선 두께</p>
+            <select name="opction" id="strokeWidth">
+                <option value="3">3px</option>
+                <option value="5">5px</option>
+                <option value="10">10px</option>
+            </select>
+            <p>글자 크기</p>
+            <select name="opction" id="fontSize">
+                <option value="16">16px</option>
+                <option value="18">18px</option>
+                <option value="24">24px</option>
+                <option value="32">32px</option>
+            </select>
+        </div>
+        <div class="time">
+            <div class="video_time">
+                <p id="nowTime">00:00:00:00</p>
+            </div>
+            <p>/</p>
+            <div class="video_time">
+                <p id="allTime">00:00:00:00</p>
+            </div>
+            <p id="edit_start">시작시간</p>
+            <div class="edit_start_time">
+                <p id="start_time">00:00:00:00</p>
+            </div>
+            <p>유지시간</p>
+            <div class="edit_time">
+                <p id="mainTain_time">00:00:00:00</p>
+            </div>
+        </div>
+        <div id="track">
+            <div class="timeEl" draggable="true">
+                
+            </div>
+            <div id="time_view">
+                <div class="time_track"></div>
+            </div>
+        </div>
+        <div class="cover_images">
+            <img src="./images/movie1-cover.jpg" id="movie_1" alt="">
+            <img src="./images/movie2-cover.jpg" id="movie_2" alt="">
+            <img src="./images/movie3-cover.jpg" id="movie_3" alt="">
+            <img src="./images/movie4-cover.jpg" id="movie_4" alt="">
+            <img src="./images/movie5-cover.jpg" id="movie_5" alt="">
+        </div>
+   </div>
+    <!-- ////////////////// -->
+    <footer>
+        <div id="footer" class="container">
+            <p>부산사무국(48058) 부산시 해운대구 수영강변대로 120 영화의전당 비프힐 3층 지도전화 1688-3010팩스 051-709-2299 <br>
+                서울사무소(03131) 서울특별시 종로구 율곡로 84 가든타워 1601호 지도전화 02-3675-5097팩스 02-3675-5098 <br>
+                <span>ⓒ Busan International Film Festival</span></p>
+            <div class="footer-pic w-75 float-right">
+                <div><img src="./images/4.FOOTER/sns_i_facebook.png" alt=""></div>
+                <div><img src="./images/4.FOOTER/sns_i_instagram.png" alt=""></div>
+                <div><img src="./images/4.FOOTER/sns_i_link.png" alt=""></div>
+                <div><img src="./images/4.FOOTER/sns_i_twitter.png" alt=""></div>
+                <div><img src="./images/4.FOOTER/sns_i_youtube.png" alt=""></div>
+            </div>
+        </div>
+    </footer> 
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/App.js"></script>
+<script src="js/MoviePlayer.js"></script>
+<script src="js/Track.js"></script>
+<script src="js/Tool.js"></script>
+<script src="js/LineTool.js"></script>
+<script src="js/RectTool.js"></script>
+<script src="js/TextTool.js"></script>
+<script src="js/Select.js"></script>
+<script src="./bootstrap/js/bootstrap.js"></script>
+</html>
