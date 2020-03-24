@@ -7,10 +7,12 @@ class MoviePlayer {
         this.$playBtn = document.querySelector("#play");
         this.$pauseBtn = document.querySelector("#pause");
 
+        this.$Before = document.querySelector(".timeEl");
         // 
 
         // variable
         this.movieList = new Array; 
+        this.cursor = false;
         // 
         
         this.addEvent();
@@ -18,15 +20,24 @@ class MoviePlayer {
     }
 
     addEvent() {
-
         this.$playBtn.addEventListener("click", ()=>{ 
             if(this.app.nowVideo)
                 this.moviePlay();
         });
+
         this.$pauseBtn.addEventListener("click", ()=>{ 
             if(this.app.nowVideo)
                 this.moviePause();
         });
+
+        this.$Before.addEventListener("mousedown", e=>{
+            e.preventDefault();
+            this.cursor = true;
+        })
+
+        window.addEventListener("mouseup", e=>{
+            this.cursor = false;
+        })
 
         document.querySelectorAll(".cover_images > img").forEach(img=>{
             img.addEventListener("click", e=>{
@@ -46,40 +57,48 @@ class MoviePlayer {
 
         this.videoTime();
 
-        if(!this.movieList.indexOf(movieId)) {
-            this.movieList.push(this.app.movieId);
-            // this.addTool(); 
-            // this.addTrackClip(); 
-            
+        console.log(this.movieList.indexOf(movieId));
+        if(this.movieList.indexOf(movieId) == -1) {
+            this.movieList.push(movieId);
+
+            this.addTool(movieId); 
+            this.addTrackClip(movieId); 
+
             this.timeTrack = document.querySelector("#time_view");
             this.timeTrack.style.visibility = "visible";
         }
+        this.app.$track.style.visibility = 'visible';
+
+        this.movieList.forEach(movie=>{
+            document.querySelector(`#tool_${movie}`).style.visibility = 'hidden';
+            document.querySelector(`#track_${movie}`).style.visibility = 'hidden';
+        })
+        
+        document.querySelector(`#tool_${movieId}`).style.visibility = 'visible';
+        document.querySelector(`#track_${movieId}`).style.visibility = 'visible';
     }
     
     moviePlay(){
-        //재생, 재생시 프래임 반복
         this.app.nowVideo.play();
         console.log(document.querySelector(`#tool_${this.app.movieId}`))
     }
 
     moviePause(){
-        //일시정지
         this.app.nowVideo.pause();
     }
     
-    addTool(){
-        //무비별 툴 생성
+    addTool(movieId){
         this.tool = document.createElement("div");
-        this.tool.id = `tool_${this.app.movieId}`; 
+        this.tool.id = `tool_${movieId}`; 
         this.tool.classList.add('tool');  
-        parCanvas.appendChild(this.tool);  
+        this.app.$canvas.appendChild(this.tool);  
     }
 
-    addTrackClip(){
+    addTrackClip(movieId){
         this.track = document.createElement("div");
-        this.track.id = `track_${this.app.movieId}`;   
+        this.track.id = `track_${movieId}`;   
         this.track.classList.add('track');   
-        parTrack.prepend(this.track);   
+        this.app.$track.prepend(this.track);   
     }
 
     videoTime(){
@@ -90,7 +109,11 @@ class MoviePlayer {
     frame() {
         requestAnimationFrame(()=>{ this.frame() });
         if(this.app.nowVideo) {
+            const {currentTime, duration} = this.app.nowVideo;
+            let x = currentTime * this.track.width / duration;
 
+            this.nowTime = document.querySelector("#nowTime");
+            this.nowTime.innerHTML = this.app.nowVideo.currentTime.time();
         }
     }
 }

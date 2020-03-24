@@ -15,17 +15,19 @@ Number.prototype.time = function(){
 
 class App {
     constructor() {
-        // class
-        // let tool = new Tool(this);
-        let moviePlayer = new MoviePlayer(this);
-        // 
         // dom
-
+        this.$screen = document.querySelector("#screen")
+        this.$canvas = document.querySelector("#canvas");
+        this.$track = document.querySelector("#track");
         // 
         // variable
         this.nowVideo;
         // 
 
+        // class
+        let tool = new Tool(this);
+        let moviePlayer = new MoviePlayer(this);
+        // 
         this.addEvent();
     }
 
