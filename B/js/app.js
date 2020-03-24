@@ -13,6 +13,9 @@ Number.prototype.time = function(){
     return `${hour}:${min}:${sec}:${msec}`;
 }
 
+const borderWidth = 10;
+const borderColor = '#77cdff';
+
 class App {
     constructor() {
         // dom
@@ -27,11 +30,6 @@ class App {
         let tool = new Tool(this);
         let moviePlayer = new MoviePlayer(this);
         // 
-        this.addEvent();
-    }
-
-    addEvent() {
-
     }
 }
 

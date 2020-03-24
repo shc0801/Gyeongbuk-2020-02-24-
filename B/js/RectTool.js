@@ -9,7 +9,6 @@ class RectTool {
     }
 
     mousemove(e) {
-        console.log(this.rect)
         let style = this.rect.style;
         const {x, y} = this.tool.mousePoint(e);
 
@@ -52,6 +51,7 @@ class RectTool {
         this.rect.classList.add('tool_rect');  
 
         let style = this.rect.style;
+        style.border = `4px solid ${this.tool.color}`;
         style.left = this.startX + 'px';
         style.top = this.startY + 'px';
         style.zIndex = this.tool.clipNum;

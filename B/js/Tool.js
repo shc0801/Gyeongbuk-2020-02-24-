@@ -40,7 +40,7 @@ class Tool {
         })
 
         this.app.$screen.addEventListener("mousedown", e=>{
-            if(!this.nowTool || e.which !== 1) return; 
+            if(!this.nowTool || e.which !== 1 || this.nowTool == 'text') return; 
             this.mouse = true;
             this.setTool.mousedown(e);
         })
@@ -55,8 +55,8 @@ class Tool {
         window.addEventListener("mouseup", e=>{
             if(!this.nowTool || e.which !== 1) return; 
             if(!this.nowTool) return;
-            this.mouse = false;
             this.setTool.mouseup(e);
+            this.mouse = false;
         })
     }
 

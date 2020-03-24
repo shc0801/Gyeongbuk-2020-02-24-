@@ -22,6 +22,7 @@ class LineTool {
     }
 
     mouseup(e) {
+        if(this.tool.mouse)
         this.tool.selectPath.push(this.tool.path);
     }
 
@@ -44,7 +45,7 @@ class LineTool {
     addCanvas() {
         this.canvas = document.createElement("canvas");
         this.canvas.id = `clip_${this.tool.clipNum+=1}`;
-        this.canvas.classList.add(`canvas_${this.tool.canvasNum+=1}`);
+        this.canvas.classList.add(`${this.tool.canvasNum+=1}`);
         this.canvas.width = 850;
         this.canvas.height = 480;
         this.canvas.style.zIndex = this.tool.clipNum;

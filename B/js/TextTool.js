@@ -7,8 +7,10 @@ class TextTool {
 
         this.addEvent();
     }
+    
     addEvent() {
-        window.addEventListener("click", (e)=>{
+        window.addEventListener("mousedown", (e)=>{
+            if(this.tool.nowTool != 'text') return;
             if(this.active) {
                 console.log(this.active)
                 if(this.input.value === '')
@@ -18,23 +20,21 @@ class TextTool {
                     this.addSpan();
                 }
                 this.active = false;
+            } else {
+                e.path.forEach(el=>{
+                    if(el.id === 'screen') {
+                        if(!this.active) {
+                            this.addInput(e);
+                            this.active = true;
+                        }
+                    }
+                })
             }
         })
     }
 
-    mousedown(e) {
-        if(!this.active) {
-            this.addInput(e);
-            this.active = true;
-        }
-    }
-
-    mousemove(e) {
-
-    }
-
     mouseup(e) {
-        
+        this.input.focus();
     }
 
     addInput(e) {
@@ -58,7 +58,9 @@ class TextTool {
     addSpan(e) {
         this.span = document.createElement("span");
         this.span.id = `tool_${this.tool.clipNum += 1}`; 
+        this.span.classList.add('tool_span');  
         this.span.innerText = this.input.value
+
         this.span.style = this.input.style.cssText;
 
         this.nowClip = document.querySelector(`#clip_${this.app.nowVideo.classList[0]}`);
