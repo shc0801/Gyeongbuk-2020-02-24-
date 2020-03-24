@@ -61,8 +61,8 @@ class MoviePlayer {
         if(this.movieList.indexOf(movieId) == -1) {
             this.movieList.push(movieId);
 
-            this.addTool(movieId); 
-            this.addTrackClip(movieId); 
+            this.addClip(movieId); 
+            this.addTrack(movieId); 
 
             this.timeTrack = document.querySelector("#time_view");
             this.timeTrack.style.visibility = "visible";
@@ -70,31 +70,31 @@ class MoviePlayer {
         this.app.$track.style.visibility = 'visible';
 
         this.movieList.forEach(movie=>{
-            document.querySelector(`#tool_${movie}`).style.visibility = 'hidden';
+            document.querySelector(`#clip_${movie}`).style.visibility = 'hidden';
             document.querySelector(`#track_${movie}`).style.visibility = 'hidden';
         })
         
-        document.querySelector(`#tool_${movieId}`).style.visibility = 'visible';
+        document.querySelector(`#clip_${movieId}`).style.visibility = 'visible';
         document.querySelector(`#track_${movieId}`).style.visibility = 'visible';
     }
     
     moviePlay(){
         this.app.nowVideo.play();
-        console.log(document.querySelector(`#tool_${this.app.movieId}`))
+        console.log(document.querySelector(`#clip_${this.app.movieId}`))
     }
 
     moviePause(){
         this.app.nowVideo.pause();
     }
     
-    addTool(movieId){
-        this.tool = document.createElement("div");
-        this.tool.id = `tool_${movieId}`; 
-        this.tool.classList.add('tool');  
-        this.app.$canvas.appendChild(this.tool);  
+    addClip(movieId){
+        this.clip = document.createElement("div");
+        this.clip.id = `clip_${movieId}`; 
+        this.clip.classList.add('clip');  
+        this.app.$canvas.appendChild(this.clip);  
     }
 
-    addTrackClip(movieId){
+    addTrack(movieId){
         this.track = document.createElement("div");
         this.track.id = `track_${movieId}`;   
         this.track.classList.add('track');   

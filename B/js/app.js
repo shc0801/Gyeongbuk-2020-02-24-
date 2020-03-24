@@ -23,7 +23,6 @@ class App {
         // variable
         this.nowVideo;
         // 
-
         // class
         let tool = new Tool(this);
         let moviePlayer = new MoviePlayer(this);
