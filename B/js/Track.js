@@ -31,26 +31,35 @@ class Track {
         this.$tool_track.forEach(track=>{
             track.addEventListener("mousedown", e=>{
                 let clip = document.querySelector(`#${e.currentTarget.classList[1]}`);
-                this.select(clip);
+
+                this.$tool_track.forEach(trackClip=>{
+                    this.tool.clear(document.querySelector(`#${trackClip.classList[1]}`))
+                    this.$tool_track.forEach(track=>{
+                        track.style.backgroundColor = 'darkgray';
+                    });
+                })
+                this.select(clip, track);
             });
         });
     }
 
-    select(clip) {
+    select(clip, track) {
         if(this.tool.nowTool !== 'select') return;
         if(clip.tagName === 'CANVAS') {
-            let selectPath = this.tool.selectPath[clip.classList[0] - 1];
-
             this.canvas = clip;
             this.ctx = this.canvas.getContext('2d');
             this.lineSelect(clip);
+            this.tool.select.selectClip = clip;
         } else if(clip.tagName === 'DIV') {
             this.rect = clip;
             this.rect.style.borderColor = borderColor;
+            this.tool.select.selectClip = clip;
         } else if(clip.tagName === 'SPAN') {
             this.span = clip;
             this.span.style.borderColor = this.span.style.backgroundColor;
+            this.tool.select.selectClip = clip;
         }
+        track.style.backgroundColor = borderColor;
     }
 
     lineSelect(clip) {
@@ -74,7 +83,6 @@ class Track {
             this.ctx.lineCap = 'round';
             this.ctx.strokeStyle = path.color;
             this.ctx.lineWidth = path.w;
-            
             if(i != 0)
                 this.ctx.moveTo(selectPath[i-1].x, selectPath[i-1].y);
             else

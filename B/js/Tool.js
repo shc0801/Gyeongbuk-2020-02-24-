@@ -42,9 +42,10 @@ class Tool {
         })
 
         this.app.$screen.addEventListener("mousedown", e=>{
-            if(!this.nowTool || e.which !== 1 || this.nowTool == 'text' || this.nowTool == 'select') return; 
+            if(!this.nowTool || e.which !== 1 || this.nowTool == 'text') return; 
             this.mouse = true;
             this.setTool.mousedown(e);
+            if(this.nowTool == 'select') return;
             let track = new Track(this.app, this, this.setTool);
         })
 
@@ -66,9 +67,9 @@ class Tool {
     mousePoint(e) {
         const { pageX, pageY } = e;
         let x = pageX - this.app.$screen.offsetLeft;
-        x = x < 0 ? 0 : this.app.$screen.width < x ? this.app.$screen.width : x;
+        x = x < 0 ? 0 : this.app.$screen.offsetWidth < x ? this.app.$screen.offsetWidth : x;
         let y = pageY - this.app.$screen.offsetTop;
-        y = y < 0 ? 0 : this.app.$screen.height < y ? this.app.$screen.height : y;
+        y = y < 0 ? 0 : this.app.$screen.offsetHeight < y ? this.app.$screen.offsetHeight : y;
         return { x: x, y: y };
     }
 
@@ -81,8 +82,7 @@ class Tool {
         this.path.push({ x: x, y: y, num: this.canvasNum, w: this.strokeWidth, color: this.color })
     }
 
-    clear(selectCilp, e) {
-        let { x, y } = this.mousePoint(e);
+    clear(selectCilp) {
         if(selectCilp == null) return;
         if(selectCilp.tagName === 'CANVAS') {
             let selectPath = this.selectPath[selectCilp.classList[0] - 1];
@@ -100,7 +100,7 @@ class Tool {
     }
 
     lineClear(selectPath) {
-        this.ctx = ctx;
+        console.log(this.canvas.width)
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.beginPath();
         selectPath.forEach((path, i)=>{

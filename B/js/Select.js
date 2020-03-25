@@ -14,7 +14,8 @@ class Select {
         this.startX = x;
         this.startY = y;
 
-        this.tool.clear(this.selectClip, e);
+        this.tool.clear(this.selectClip);
+        this.clearTrack();
         this.cheak(e, this.tool.clipList);
 
         this.select = true;
@@ -48,6 +49,7 @@ class Select {
                         this.moveClip = this.canvas;
                         this.lineSelect();
                         this.select = false;
+                        this.trackSelect(clip);
                     }
                 } else if(clip.tagName === 'DIV') {
                     if((clip.offsetLeft <= x && clip.offsetLeft + clip.offsetWidth >= x) &&
@@ -56,6 +58,7 @@ class Select {
                         this.rect.style.borderColor = borderColor;
                         this.moveClip = this.rect;
                         this.select = false;
+                        this.trackSelect(clip);
                     }
                 } else if(clip.tagName === 'SPAN') {
                     if((clip.offsetLeft <= x && clip.offsetLeft + clip.offsetWidth >= x) &&
@@ -64,6 +67,7 @@ class Select {
                         this.span.style.borderColor = borderColor;
                         this.moveClip = this.span;
                         this.select = false;
+                        this.trackSelect(clip);
                     }
                 }
             }
@@ -102,5 +106,17 @@ class Select {
             this.ctx.lineTo(path.x, path.y);
         });
         this.ctx.stroke();
+    }
+
+    trackSelect(clip) {
+        let trackClip = document.querySelector(`.${clip.id}`);
+        trackClip.style.backgroundColor = borderColor;
+    }
+
+    clearTrack() {
+        let track = document.querySelectorAll(`#track_${this.app.nowVideo.classList[0]} > div`);
+        track.forEach(trackClip=>{
+            trackClip.style.backgroundColor = 'darkgray';
+        })
     }
 }
