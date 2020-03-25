@@ -7,6 +7,7 @@ class Select {
     }
 
     mousedown(e) {
+        this.tool.clear();
         this.cheak(e);
     }
 
@@ -38,6 +39,8 @@ class Select {
             this.span.style.borderColor = borderColor;
             this.moveClip = this.span;
         }
+        this.tool.selectClip = e.target;
+        console.log(this.tool.selectClip)
     }
 
     lineSelect() {

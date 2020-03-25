@@ -4,6 +4,7 @@ class Tool {
 
     this.path = new Array;
     this.selectPath = new Array;
+    this.selectClip = null;
 
     this.move = {
         line: false,
@@ -76,5 +77,36 @@ class Tool {
         x = x < 0 ? 0 : x > canvasWidth ? canvasWidth : x;
         y = y < 0 ? 0 : y > canvasHeight ? canvasHeight : y;
         this.path.push({ x: x, y: y, num: this.canvasNum, w: this.strokeWidth, color: this.color })
+    }
+
+    clear() {
+        console.log(this.selectCilp)
+        if(this.selectCilp === 'CANVAS') {
+            let selectPath = this.selectPath[this.moveClip.classList[0] - 1];
+
+            this.canvas = this.selectCilp;
+            this.ctx = this.canvas.getContext('2d');
+
+            this.ctx.beginPath();
+            selectPath.forEach((path, i)=>{
+                this.ctx.lineCap = 'round';
+                this.ctx.strokeStyle = path.color;
+                this.ctx.lineWidth = path.w;
+                
+                if(i != 0)
+                    this.ctx.moveTo(selectPath[i-1].x, selectPath[i-1].y);
+                else
+                    this.ctx.moveTo(path.x, path.y);
+                this.ctx.lineTo(path.x, path.y);
+            });
+            this.ctx.stroke();
+
+        } else if(this.selectCilp === 'DIV') {
+            this.rect = this.selectCilp;
+            this.rect.style.borderColor = this.rect.style.backgroundColor;
+        } else if(this.selectCilp === 'SPAN') {
+            this.span = this.selectCilp;
+            this.span.style.borderColor = this.span.style.backgroundColor;
+        }
     }
 }
