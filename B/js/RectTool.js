@@ -47,7 +47,7 @@ class RectTool {
         const {x, y} = this.tool.mousePoint(e);
         this.startX = x; this.startY = y;
         this.rect = document.createElement('div'); 
-        this.rect.id = `tool_${this.tool.clipNum += 1}`; 
+        this.rect.id = `clip_${this.tool.clipNum += 1}`; 
         this.rect.classList.add('tool_rect');  
 
         let style = this.rect.style;

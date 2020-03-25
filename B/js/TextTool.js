@@ -57,7 +57,7 @@ class TextTool {
 
     addSpan(e) {
         this.span = document.createElement("span");
-        this.span.id = `tool_${this.tool.clipNum += 1}`; 
+        this.span.id = `clip_${this.tool.clipNum += 1}`; 
         this.span.classList.add('tool_span');  
         this.span.innerText = this.input.value
 

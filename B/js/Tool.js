@@ -15,6 +15,7 @@ class Tool {
     this.clipList = new Array;
     this.clipNum = 0;
     this.canvasNum = 0;
+    this.trackNum = 0;
      
     // class   
     this.line = new LineTool(this.app, this);
@@ -41,9 +42,10 @@ class Tool {
         })
 
         this.app.$screen.addEventListener("mousedown", e=>{
-            if(!this.nowTool || e.which !== 1 || this.nowTool == 'text') return; 
+            if(!this.nowTool || e.which !== 1 || this.nowTool == 'text' || this.nowTool == 'select') return; 
             this.mouse = true;
             this.setTool.mousedown(e);
+            let track = new Track(this.app, this, this.setTool);
         })
 
         window.addEventListener("mousemove", e=>{
@@ -98,6 +100,7 @@ class Tool {
     }
 
     lineClear(selectPath) {
+        this.ctx = ctx;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.beginPath();
         selectPath.forEach((path, i)=>{

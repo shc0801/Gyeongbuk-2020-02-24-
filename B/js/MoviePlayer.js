@@ -57,7 +57,6 @@ class MoviePlayer {
 
         this.videoTime();
 
-        console.log(this.movieList.indexOf(movieId));
         if(this.movieList.indexOf(movieId) == -1) {
             this.movieList.push(movieId);
 
