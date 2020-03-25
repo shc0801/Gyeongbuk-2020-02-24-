@@ -4,43 +4,72 @@ class Select {
         this.tool = tool;
 
         this.moveClip = null;
+        this.selectClip = null;
+
+        this.select = true;
     }
 
     mousedown(e) {
-        this.tool.clear();
-        this.cheak(e);
+        const {x, y} = this.tool.mousePoint(e);
+        this.startX = x;
+        this.startY = y;
+
+        this.tool.clear(this.selectClip, e);
+        this.cheak(e, this.tool.clipList);
+
+        this.select = true;
+        
+        if(this.moveClip == null) return;
+        this.moveClipLeft = this.moveClip.offsetLeft;
+        this.moveClipTop = this.moveClip.offsetTop;
     }
 
     mousemove(e) {
-
+        if(this.moveClip == null) return;
+        const { x, y } = this.tool.mousePoint(e);
+        this.moveClip.style.left = this.moveClipLeft + x - this.startX + 'px';
+        this.moveClip.style.top = this.moveClipTop + y - this.startY + 'px';
     }
 
     mouseup(e) {
-
+        this.moveClip = null;
     }
 
-    cheak(e) {
+    cheak(e, clipList) {
         const {x, y} = this.tool.mousePoint(e);
-
-        if(e.target.tagName === 'CANVAS') {
-            this.canvas = e.target;
-            this.ctx = this.canvas.getContext('2d');
-            this.color = this.ctx.getImageData(x - this.canvas.offsetLeft, y - this.canvas.offsetTop, 100, 100).data[3];
-            if(this.color != 0) {
-                this.moveClip = this.canvas;
-                this.lineSelect();
+        clipList = clipList.reverse()
+        clipList.forEach(clip=>{
+            if(this.select) {
+                if(clip.tagName === 'CANVAS') {
+                    this.canvas = clip;
+                    this.ctx = this.canvas.getContext('2d');
+                    this.color = this.ctx.getImageData(x - this.canvas.offsetLeft, y - this.canvas.offsetTop, 100, 100).data[3];
+                    if(this.color != 0) {
+                        this.moveClip = this.canvas;
+                        this.lineSelect();
+                        this.select = false;
+                    }
+                } else if(clip.tagName === 'DIV') {
+                    if((clip.offsetLeft <= x && clip.offsetLeft + clip.offsetWidth >= x) &&
+                       (clip.offsetTop <= y && clip.offsetTop + clip.offsetHeight >= y)) {
+                        this.rect = clip;
+                        this.rect.style.borderColor = borderColor;
+                        this.moveClip = this.rect;
+                        this.select = false;
+                    }
+                } else if(clip.tagName === 'SPAN') {
+                    if((clip.offsetLeft <= x && clip.offsetLeft + clip.offsetWidth >= x) &&
+                       (clip.offsetTop <= y && clip.offsetTop + clip.offsetHeight >= y)) {
+                        this.span = clip;
+                        this.span.style.borderColor = borderColor;
+                        this.moveClip = this.span;
+                        this.select = false;
+                    }
+                }
             }
-        } else if(e.target.tagName === 'DIV') {
-            this.rect = e.target;
-            this.rect.style.borderColor = borderColor;
-            this.moveClip = this.rect;
-        } else if(e.target.tagName === 'SPAN') {
-            this.span = e.target;
-            this.span.style.borderColor = borderColor;
-            this.moveClip = this.span;
-        }
-        this.tool.selectClip = e.target;
-        console.log(this.tool.selectClip)
+        })
+        this.selectClip = this.moveClip;
+        clipList = clipList.reverse()
     }
 
     lineSelect() {

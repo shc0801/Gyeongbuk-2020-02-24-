@@ -58,5 +58,6 @@ class RectTool {
 
         this.nowClip = document.querySelector(`#clip_${this.app.nowVideo.classList[0]}`);
         this.nowClip.appendChild(this.rect);
+        this.tool.clipList.push(this.rect);
     }
 }

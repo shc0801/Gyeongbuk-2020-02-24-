@@ -22,8 +22,8 @@ class LineTool {
     }
 
     mouseup(e) {
-        if(this.tool.mouse)
-        this.tool.selectPath.push(this.tool.path);
+        if(this.tool.mouse) 
+            this.tool.selectPath.push(this.tool.path);
     }
 
     draw() {
@@ -52,5 +52,6 @@ class LineTool {
 
         this.nowClip = document.querySelector(`#clip_${this.app.nowVideo.classList[0]}`);
         this.nowClip.appendChild(this.canvas);
+        this.tool.clipList.push(this.canvas);
     }
 }
