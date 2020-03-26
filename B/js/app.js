@@ -22,9 +22,13 @@ class App {
         this.$screen = document.querySelector("#screen")
         this.$canvas = document.querySelector("#canvas");
         this.$track = document.querySelector("#track");
+        
+        this.startTimeDom = document.querySelector("#start_time");
+        this.mainTainDom = document.querySelector("#mainTain_time");
         // 
         // variable
         this.nowVideo;
+        this.time = new Array;
         // 
         // class
         let tool = new Tool(this);

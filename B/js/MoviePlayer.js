@@ -113,6 +113,19 @@ class MoviePlayer {
 
             this.nowTime = document.querySelector("#nowTime");
             this.nowTime.innerHTML = this.app.nowVideo.currentTime.time();
+            
+            this.app.time.forEach(time=>{
+                if(time.start <= this.app.nowVideo.currentTime && this.app.nowVideo.currentTime <= time.start + time.main){
+                    let viewDom = document.querySelector(`#${time.id}`);
+                    if(viewDom !== null)
+                        viewDom.style.display = 'block';
+                }
+                else{
+                    let hideDom = document.querySelector(`#${time.id}`);
+                    if(hideDom !== null)
+                        hideDom.style.display = 'none';
+                }
+            })
         }
     }
 }
