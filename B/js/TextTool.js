@@ -66,6 +66,6 @@ class TextTool {
         this.nowClip = document.querySelector(`#clip_${this.app.nowVideo.classList[0]}`);
         this.nowClip.appendChild(this.span);
         this.tool.clipList.push(this.span);
-        console.log(this.tool.span)
+        let track = new Track(this.app, this.tool, this.tool.setTool);
     }
 }
